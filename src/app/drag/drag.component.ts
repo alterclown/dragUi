@@ -15,6 +15,7 @@ export class DragComponent implements OnInit {
 
   todo:any;
   done:any;
+  response:any
   constructor(private dragService:DragService ) { }
 
   ngOnInit(): void {
@@ -35,16 +36,13 @@ export class DragComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<string[]>) {
-    debugger;
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
-      transferArrayItem(
-        event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex,
-      );
+      transferArrayItem(event.previousContainer.data,event.container.data,event.previousIndex,event.currentIndex);
+      this.dragService.saveTransferItem(event.container.data).subscribe(res=> 
+        this.response= res
+      )
     }
   }
 

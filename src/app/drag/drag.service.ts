@@ -16,4 +16,7 @@ export class DragService {
   getTransferItem() {
     return this.httpClient.get(this.rootURL + `GetTransferItem`);
   }
+  saveTransferItem(object:any) {
+    return this.httpClient.post(this.rootURL + 'SaveTransferItem', object);
+  }
 }

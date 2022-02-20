@@ -9,7 +9,16 @@
       [cdkDropListConnectedTo]="[doneList]"
       class="example-list"
       (cdkDropListDropped)="drop($event)">
-      <div class="example-box" *ngFor="let item of todo" cdkDrag>{{item.transferTitle}}</div>
+      <div class="example-box row" *ngFor="let item of todo" cdkDrag >{{item.transferItemTitle}}</div>
+      <!-- <div class="container">
+        <div class="row">
+            <div class="col-xl col-lg-3 col-md-4 col-sm-6 pb-4" *ngFor="let item of todo" cdkDrag >
+               <div class="card card-block">
+                {{item.transferItemTitle}}
+                </div>
+            </div>
+        </div>
+    </div> -->
     </div>
   </div>
   
@@ -23,7 +32,16 @@
       [cdkDropListConnectedTo]="[todoList]"
       class="example-list"
       (cdkDropListDropped)="drop($event)">
-      <div class="example-box" *ngFor="let item of done" cdkDrag>{{item.moveTitle}}</div>
-    </div>
+      <div class="example-box row" *ngFor="let item of done" cdkDrag>{{item.moveTitle}}</div>
+      <!-- <div class="container">
+        <div class="row">
+            <div class="col-xl col-lg-3 col-md-4 col-sm-6 pb-4" *ngFor="let item of done" cdkDrag>
+               <div class="card card-block">
+                {{item.moveTitle}}
+                </div>
+            </div>
+        </div>
+    </div> -->
+  </div>
   </div>
   
