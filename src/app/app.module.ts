@@ -6,11 +6,13 @@ import { AppComponent } from './app.component';
 import { DragComponent } from './drag/drag.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { HttpClientModule } from '@angular/common/http';
+import { DragGroupComponent } from './drag-group/drag-group.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DragComponent
+    DragComponent,
+    DragGroupComponent
   ],
   imports: [
     HttpClientModule,

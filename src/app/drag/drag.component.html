@@ -1,47 +1,31 @@
 <!-- <p>drag works!</p> -->
 <div class="example-container">
     <h2>To do</h2>
-  
-    <div
-      cdkDropList
-      #todoList="cdkDropList"
-      [cdkDropListData]="todo"
-      [cdkDropListConnectedTo]="[doneList]"
-      class="example-list"
-      (cdkDropListDropped)="drop($event)">
-      <div class="example-box row" *ngFor="let item of todo" cdkDrag >{{item.transferItemTitle}}</div>
-      <!-- <div class="container">
-        <div class="row">
-            <div class="col-xl col-lg-3 col-md-4 col-sm-6 pb-4" *ngFor="let item of todo" cdkDrag >
-               <div class="card card-block">
-                {{item.transferItemTitle}}
-                </div>
-            </div>
-        </div>
-    </div> -->
+    <div 
+    cdkDropList 
+    #todoList="cdkDropList"
+    [cdkDropListData]="todo"
+    [cdkDropListConnectedTo]="[doneList]"
+    cdkDropListOrientation="horizontal" 
+    class="example-list" 
+    (cdkDropListDropped)="drop($event)">
+    <br>
+      <div class="example-box" *ngFor="let item of todo" cdkDrag >{{item.transferItemTitle}}</div>
     </div>
   </div>
+ 
   
   <div class="example-container">
     <h2>Done</h2>
-  
-    <div
-      cdkDropList
-      #doneList="cdkDropList"
-      [cdkDropListData]="done"
-      [cdkDropListConnectedTo]="[todoList]"
-      class="example-list"
-      (cdkDropListDropped)="drop($event)">
-      <div class="example-box row" *ngFor="let item of done" cdkDrag>{{item.moveTitle}}</div>
-      <!-- <div class="container">
-        <div class="row">
-            <div class="col-xl col-lg-3 col-md-4 col-sm-6 pb-4" *ngFor="let item of done" cdkDrag>
-               <div class="card card-block">
-                {{item.moveTitle}}
-                </div>
-            </div>
-        </div>
-    </div> -->
-  </div>
+  <div 
+    cdkDropList 
+    cdkDropList
+    #doneList="cdkDropList"
+    [cdkDropListData]="done"
+    [cdkDropListConnectedTo]="[todoList]"
+    class="example-list" 
+    (cdkDropListDropped)="drop($event)">
+      <div class="example-box"  *ngFor="let item of done" cdkDrag>{{item.moveTitle}}</div>
+    </div>
   </div>
   
