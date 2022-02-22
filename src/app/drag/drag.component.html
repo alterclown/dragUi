@@ -1,10 +1,6 @@
 <div class="container">
-
     <div class="row">
-
-
-        <button (click)="saveItemToArray()"> Add Item</button>
-
+        <!-- <button (click)="saveItemToArray()"> Add Item</button> -->
         <ng-container *ngFor="let row of items2; let i = index">
             <ng-container *ngFor="let col of items2[i]; let j = index">
                 <div 
@@ -15,13 +11,41 @@
                 (drop)="onDrop($event, i, j);"
                 >
                     <div class="card-body">
-                        <h5 class="card-title">{{ col.title}}</h5>
+                        <h5 class="card-title">{{col.name}}</h5>
                         <p class="card-text"> {{col.tag}} </p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <a href="#" class="btn btn-primary" *ngIf="col.name !='' ">Go somewhere</a>
                     </div>
                 </div>
             </ng-container>
         </ng-container>
-
     </div>
 </div>
+
+
+<!-- 
+
+
+
+<div class="container">
+    <div class="row">
+       
+        <ng-container *ngFor="let row of items3; let i = index">
+            <h1>{{ row.Title }}</h1>
+            <ng-container *ngFor="let col of row.Children; let j = index">
+                <div 
+                class="card m-2 p-2 col-sm-2" 
+                draggable="true"
+                (dragstart)="onDragStart($event, i, j);"
+                (dragover)="onDragOver($event, i, j);"
+                (drop)="onNewDrop($event, i, j);"
+                >
+                    <div class="card-body">
+                        <h5 class="card-title">{{col.name}}</h5>
+                        <p class="card-text"> {{col.name}} </p>
+                        <a href="#" class="btn btn-primary" *ngIf="col.name !='' ">Go somewhere</a>
+                    </div>
+                </div>
+            </ng-container>
+        </ng-container>
+    </div>
+</div> -->

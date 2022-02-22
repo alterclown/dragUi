@@ -4,9 +4,14 @@ import { DragService } from './drag.service';
 
 interface Item {
   id: number
-  title: string
+  name: string
   tag: string,
   type: string
+}
+
+interface Items{
+  Title:string
+  Children:Array<Item>
 }
 
 @Component({
@@ -16,14 +21,29 @@ interface Item {
 })
 export class DragComponent implements OnInit {
 
-  // todo = ['Get to work', 'Pick up groceries', 'Go home', 'Fall asleep'];
+  
 
-  // done = ['Get up', 'Brush teeth', 'Take a shower', 'Check e-mail', 'Walk dog'];
+  items3: any[]= [
+    {
+      'Title': 'UK',
+      'Children': [
+		{ id: 1, name: "table", tag: "table", type: "report" },
+		{ id: 2, name: "graph", tag: "graph", type: "report" },
+		{ id: 3, name: "barchart", tag: "barchart", type: "graph" },
+    {id: 0, name: '', tag: '', type:'' }
+      ]
+    },
+    {
+      'Title': 'US',
+      'Children': [
+    { id: 4, name: "content", tag: "content", type: "graph" },
+      { id: 5, name: "card", tag: "card", type: "component" },
+      { id: 6, name: "scatter", tag: "scatter", type: "graph" },
+      {id: 0, name: '', tag: '', type:'' }
+      ]
+    }
+  ];
 
-  todo = ['Get to work', 'Pick up groceries', 'Go home', 'Fall asleep'];
-
-  done = ['Get up', 'Brush teeth', 'Take a shower', 'Check e-mail', 'Walk dog'];
-  lol = ['lol1', 'lol2'];
 
   constructor(private dragService: DragService) { }
 
@@ -32,45 +52,63 @@ export class DragComponent implements OnInit {
   }
 
   items2: Item[][] = [
+    
     [
-      { id: 1, title: "table", tag: "table", type: "report" },
-      { id: 2, title: "graph", tag: "graph", type: "report" },
-      { id: 3, title: "barchart", tag: "barchart", type: "graph" },
+      { id: 1, name: "table", tag: "table", type: "report" },
+      { id: 2, name: "graph", tag: "graph", type: "report" },
+      { id: 3, name: "barchart", tag: "barchart", type: "graph" },
     ],
     [
-      { id: 4, title: "content", tag: "content", type: "graph" },
-      { id: 5, title: "card", tag: "card", type: "component" },
-      { id: 6, title: "scatter", tag: "scatter", type: "graph" },
-    ],
-
-    [
-      { id: 4, title: "aaa", tag: "aaa", type: "report" },
-      { id: 5, title: "bbb", tag: "bbb", type: "component" },
-      { id: 6, title: "ccc", tag: "ccc", type: "report" },
-    ],
-
-  ]
-
-
-  items3 = [
-    [
-      { id: 1, title: "table", tag: "table" },
-      { id: 2, title: "graph", tag: "graph" },
-      { id: 3, title: "barchart", tag: "barchart" },
-    ],
-    [
-      { id: 4, title: "content", tag: "content" },
-      { id: 5, title: "card", tag: "card" },
-      { id: 6, title: "scatter", tag: "scatter" },
+      { id: 4, name: "content", tag: "content", type: "graph" },
+      { id: 5, name: "card", tag: "card", type: "component" },
+      { id: 6, name: "scatter", tag: "scatter", type: "graph" },
     ],
 
     [
-      { id: 4, title: "aaa", tag: "aaa" },
-      { id: 5, title: "bbb", tag: "bbb" },
-      { id: 6, title: "ccc", tag: "ccc" },
+      { id: 7, name: "aaa", tag: "aaa", type: "report" },
+      { id: 8, name: "bbb", tag: "bbb", type: "component" },
+      { id: 9, name: "ccc", tag: "ccc", type: "report" },
     ],
+    [ 
+      {id: 0, name: '', tag: '', type:'' }
+    ]
 
   ]
+
+
+  // items3: Items[][] = [
+  //   [
+  //   {Title:'A',
+  //   Children:[
+  //     { id: 1, title: "table", tag: "table", type: "report" },
+  //     { id: 2, title: "graph", tag: "graph", type: "report" },
+  //     { id: 3, title: "barchart", tag: "barchart", type: "graph" },
+  //   ]},
+    
+
+  // ],
+  // [{Title:'B',
+  //   Children:[
+  //     { id: 4, title: "content", tag: "content", type: "graph" },
+  //     { id: 5, title: "card", tag: "card", type: "component" },
+  //     { id: 6, title: "scatter", tag: "scatter", type: "graph" },
+  //   ]}
+  // ],
+  // [{Title:'C',
+  //   Children:[
+  //     { id: 7, title: "aaa", tag: "aaa", type: "report" },
+  //     { id: 8, title: "bbb", tag: "bbb", type: "component" },
+  //     { id: 9, title: "ccc", tag: "ccc", type: "report" },
+  //   ]}
+  // ],
+
+  // [{Title:'D',
+  //   Children:[
+  //   {id: 0, title: '', tag: '', type:'' }
+  //   ]}
+  // ]
+
+  // ]
 
 
   items = [
@@ -95,10 +133,6 @@ export class DragComponent implements OnInit {
   }
 
   onDrop(evt: any, currentItemRow: any, currentItemCol: any) {
-    // console.log(evt)
-
-
-
     const draggableItemRow = evt.dataTransfer.getData('row')
     const draggableItemCol = evt.dataTransfer.getData('col')
 
@@ -107,7 +141,6 @@ export class DragComponent implements OnInit {
 
     console.log("row ::::::falamu:    ", typeof currentItemRow);
     console.log("col :::::falamu::    ", currentItemCol);
-
 
     const currentArrData: Item = this.items2[currentItemRow][currentItemCol]
 
@@ -119,11 +152,36 @@ export class DragComponent implements OnInit {
 
   }
 
+
+  onNewDrop(evt: any, currentItemRow: any, currentItemCol: any) {
+
+    const draggableItemRow = evt.dataTransfer.getData('row')
+    const draggableItemCol = evt.dataTransfer.getData('col')
+
+    console.log("row ::::::ansi:    ", parseInt(draggableItemRow));
+    console.log("col :::::ansi::    ", parseInt(draggableItemCol));
+
+    console.log("row ::::::falamu:    ", typeof currentItemRow);
+    console.log("col :::::falamu::    ", currentItemCol);
+    const currentArrData: any = this.items3[currentItemRow].Children[currentItemCol]
+
+    var a=this.items3[currentItemRow];
+    var b=this.items3[currentItemCol];
+
+    this.items3[currentItemRow].Children[currentItemCol] = this.items3[draggableItemRow].Children[draggableItemCol]
+
+     this.items3[draggableItemRow].Children[draggableItemCol] = currentArrData;
+
+    console.log(this.items3);
+
+
+  }
+
   saveItemToArray() {
     const currentArrData: Item = {
       id: 4444,
       tag: "graph",
-      title: "added item",
+      name: "added item",
       type: "report"
     }
 
@@ -143,10 +201,41 @@ export class DragComponent implements OnInit {
     for(var i=0;i<row_count;i++){
         row_sizes.push(ar[i].length)
     }
-
-
     return [row_count, Math.min.apply(null, row_sizes)]
 }
 
+
+onDragInnerStart(evt: any,currentTitleIndex:any, currentItemRow: any, currentItemCol: any) {
+
+  evt.dataTransfer.setData('row', currentItemRow);
+  evt.dataTransfer.setData('col', currentItemCol);
+  evt.dataTransfer.setData('currentTitleIndex', currentTitleIndex)
+
+}
+
+onDragInnerOver(evt: any,currentTitleIndex:any, currentItemRow: any, currentItemCol: any) {
+  evt.preventDefault();
+}
+
+onInnerDrop(evt: any,currentTitleIndex:any, currentItemRow: any, currentItemCol: any) {
+
+  const draggableItemRow = evt.dataTransfer.getData('row')
+  const draggableItemCol = evt.dataTransfer.getData('col')
+  const draggableItemTitle = evt.dataTransfer.getData('currentTitleIndex')
+
+  console.log("row ::::::ansi:    ", parseInt(draggableItemRow));
+  console.log("col :::::ansi::    ", parseInt(draggableItemCol));
+  console.log("col :::::ansi::    ", parseInt(draggableItemTitle));
+
+  console.log("row ::::::falamu:    ", typeof currentItemRow);
+  console.log("col :::::falamu::    ", currentItemCol);
+
+
+  const currentArrData:any = this.items3[currentItemRow][currentItemCol].Children[currentTitleIndex]
+  this.items3[currentItemRow][currentItemCol].Children[currentTitleIndex] = this.items3[draggableItemRow][draggableItemCol].Children[currentTitleIndex]
+  this.items3[draggableItemRow][draggableItemCol].Children[draggableItemTitle] = currentArrData;
+  console.log(this.items3);
+
+}
 
 }
