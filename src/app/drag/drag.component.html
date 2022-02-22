@@ -1,9 +1,9 @@
-<div class="container">
+<div class="container m-4 p-4">
     <div class="row">
         <!-- <button (click)="saveItemToArray()"> Add Item</button> -->
         <ng-container *ngFor="let row of items2; let i = index">
             <ng-container *ngFor="let col of items2[i]; let j = index">
-                <div 
+                <div
                 class="card m-2 p-2 col-sm-2" 
                 draggable="true"
                 (dragstart)="onDragStart($event, i, j);"
@@ -26,7 +26,7 @@
 
 
 
-<div class="container">
+<div class="container m-4 p-4">
     <div class="row">
        
         <ng-container *ngFor="let row of items3; let i = index">

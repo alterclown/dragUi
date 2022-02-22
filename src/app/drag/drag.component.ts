@@ -21,9 +21,9 @@ interface Items{
 })
 export class DragComponent implements OnInit {
 
-  
+  dm = document.getElementById('divTile'); 
 
-  items3: any[]= [
+  items3: any []= [
     {
       'Title': 'UK',
       'Children': [
@@ -65,13 +65,13 @@ export class DragComponent implements OnInit {
     ],
 
     [
-      { id: 7, name: "aaa", tag: "aaa", type: "report" },
-      { id: 8, name: "bbb", tag: "bbb", type: "component" },
-      { id: 9, name: "ccc", tag: "ccc", type: "report" },
+      { id: 7, name: "x", tag: "x", type: "report" },
+      { id: 8, name: "y", tag: "y", type: "component" },
+      { id: 9, name: "z", tag: "z", type: "report" },
     ],
-    [ 
-      {id: 0, name: '', tag: '', type:'' }
-    ]
+    // [ 
+    //   {id: 0, name: '', tag: '', type:'' },
+    // ]
 
   ]
 
@@ -139,7 +139,7 @@ export class DragComponent implements OnInit {
     console.log("row ::::::ansi:    ", parseInt(draggableItemRow));
     console.log("col :::::ansi::    ", parseInt(draggableItemCol));
 
-    console.log("row ::::::falamu:    ", typeof currentItemRow);
+    console.log("row ::::::falamu:    ", currentItemRow);
     console.log("col :::::falamu::    ", currentItemCol);
 
     const currentArrData: Item = this.items2[currentItemRow][currentItemCol]
@@ -147,6 +147,7 @@ export class DragComponent implements OnInit {
     this.items2[currentItemRow][currentItemCol] = this.items2[draggableItemRow][draggableItemCol]
 
     this.items2[draggableItemRow][draggableItemCol] = currentArrData;
+    //this.items2[draggableItemRow].splice(draggableItemCol, 1);
     console.log(this.items2);
 
 
