@@ -7,12 +7,14 @@ import { DragComponent } from './drag/drag.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { HttpClientModule } from '@angular/common/http';
 import { DragGroupComponent } from './drag-group/drag-group.component';
+import { FreeDragComponent } from './free-drag-component/free-drag.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DragComponent,
-    DragGroupComponent
+    DragGroupComponent,
+    FreeDragComponent
   ],
   imports: [
     HttpClientModule,
