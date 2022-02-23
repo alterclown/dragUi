@@ -1,3 +1,4 @@
+import { CdkDragEnd } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { Item } from './item.model';
 
@@ -58,7 +59,9 @@ export class FreeDragComponent implements OnInit{
       
     }
 
-    dragEnded(event: any,object:any,index:any) {
+    dragEnded(event:any,object:any,index:any) {
+     // event.preventDefault();
+     //event.stopPropagation();
       const { offsetLeft, offsetTop } = event.source.element.nativeElement;
       const { x, y } = event.distance;      
       object.xPosition = offsetLeft + x;
