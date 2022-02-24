@@ -8,13 +8,15 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 import { HttpClientModule } from '@angular/common/http';
 import { DragGroupComponent } from './drag-group/drag-group.component';
 import { FreeDragComponent } from './free-drag-component/free-drag.component';
+import { DragEventComponent } from './drag-event/drag-event.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DragComponent,
     DragGroupComponent,
-    FreeDragComponent
+    FreeDragComponent,
+    DragEventComponent
   ],
   imports: [
     HttpClientModule,

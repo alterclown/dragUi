@@ -1,6 +1,7 @@
 import { CdkDragEnd } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { Item } from './item.model';
+import {CdkDragDrop } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-free-drag',
@@ -11,6 +12,7 @@ import { Item } from './item.model';
 
 export class FreeDragComponent implements OnInit{
 
+  isMoved = false;
   dragPosition = {x: 0, y: 0};
   dataArray:any[]=[]
 
@@ -21,8 +23,7 @@ export class FreeDragComponent implements OnInit{
     { id: 2, title: "graph", tag: "graph", xPosition: 0, yPosition:0},
     { id: 3, title: "barchart", tag: "barchart", xPosition: 0, yPosition:0},
     { id: 4, title: "content", tag: "content", xPosition: 0, yPosition:0},
-    { id: 5, title: "card", tag: "card", xPosition: 0, yPosition:0},
-    { id: 6, title: "scatter", tag: "scatter", xPosition: 0, yPosition:0}
+    { id: 5, title: "card", tag: "card", xPosition: 0, yPosition:0}
   ];
 
   constructor() {
@@ -93,6 +94,8 @@ export class FreeDragComponent implements OnInit{
         this.itemObject.xPosition = element.xPosition;
         this.itemObject.yPosition = element.yPosition;
         });
+
+        // if (object)
         console.log('lets see',object);
         console.log($event.source.getFreeDragPosition());
   }

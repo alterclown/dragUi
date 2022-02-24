@@ -8,13 +8,12 @@
 					<div
 					(cdkDragStarted)="dragStartedHandler($event,object,i)"
 					cdkDrag 
-					cdkDropListLockAxis="x"
 					[cdkDragFreeDragPosition]="dragPosition"
 					(cdkDragEnded)="dragEnd($event,object,i)"
 					class="card m-2 p-2 col-sm-2"
 					[ngStyle]="{'transform': 'translate(' + object.xPosition + 'px, ' + object.yPosition + 'px)'}"
 					>
-						<div class="card-body">
+						<div class="card-body example-list">
 							<h5 class="card-title">{{object.title}}</h5>
 							<p class="card-text"> {{object.tag}} </p>
 							<a href="#" class="btn btn-primary">Go somewhere</a>

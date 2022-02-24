@@ -1,0 +1,25 @@
+<div class="container m-4 p-4">
+    <div class="row">
+        <ng-container *ngFor="let row of items; let i = index">
+            <ng-container >
+                <div
+                class="card m-2 p-2 col-sm-2" 
+                draggable="true"
+                (dragstart)="onDragStart($event, row);"
+                (dragover)="onDragOver($event, row);"
+                (drop)="onDrop($event, row);"
+                >
+				<div class="card-body" id="{{i+1}}">
+                        <h5 class="card-title">{{row.title}}</h5>
+                        <p class="card-text"> {{row.tag}} </p>
+                        <a href="#" class="btn btn-primary" *ngIf="row.title !='' ">Go somewhere</a>
+                    </div>
+                </div>
+            </ng-container>
+        </ng-container>
+    </div>
+</div>
+
+<!-- container.addEventListener("mousedown", dragStart, false);
+container.addEventListener("mouseup", dragEnd, false);
+container.addEventListener("mousemove", drag, false); -->
