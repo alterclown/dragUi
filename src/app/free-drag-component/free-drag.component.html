@@ -8,8 +8,9 @@
 					<div
 					(cdkDragStarted)="dragStartedHandler($event,object,i)"
 					cdkDrag 
+					cdkDropListLockAxis="x"
 					[cdkDragFreeDragPosition]="dragPosition"
-					(cdkDragEnded)="dragEnded($event,object,i)"
+					(cdkDragEnded)="dragEnd($event,object,i)"
 					class="card m-2 p-2 col-sm-2"
 					[ngStyle]="{'transform': 'translate(' + object.xPosition + 'px, ' + object.yPosition + 'px)'}"
 					>
@@ -35,7 +36,7 @@
 					(cdkDragStarted)="dragStartedHandler($event,object,i)"
 					cdkDrag 
 					[cdkDragFreeDragPosition]="dragPosition"
-					(cdkDragEnded)="dragEnded($event,object,i)"
+					(cdkDragEnded)="dragEnd($event,object,i)"
 					class="card m-2 p-2 col-sm-2"
 					[ngStyle]="{'transform': 'translate(' + object.xPosition + 'px, ' + object.yPosition + 'px)'}"
 					>

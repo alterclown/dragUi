@@ -82,6 +82,21 @@ export class FreeDragComponent implements OnInit{
       console.log('lets see',object);
     }
 
+    dragEnd($event: CdkDragEnd,object:any,index:any) {
+      const { x, y } = $event.source.getFreeDragPosition();
+      object.xPosition = x;
+      object.yPosition = y;
+      this.items.forEach(element => {
+        this.itemObject.id = element.id;
+        this.itemObject.title = element.title;
+        this.itemObject.tag = element.tag;
+        this.itemObject.xPosition = element.xPosition;
+        this.itemObject.yPosition = element.yPosition;
+        });
+        console.log('lets see',object);
+        console.log($event.source.getFreeDragPosition());
+  }
+
     saveToLocalStorage(){
       const items = JSON.stringify(this.items)
       localStorage.setItem('itemArray', items);
