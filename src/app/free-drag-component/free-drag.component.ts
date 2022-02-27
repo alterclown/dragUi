@@ -1,7 +1,8 @@
-import { CdkDragEnd } from '@angular/cdk/drag-drop';
+import { CdkDrag, CdkDragEnd } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { Item } from './item.model';
 import {CdkDragDrop } from '@angular/cdk/drag-drop';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-free-drag',
@@ -26,11 +27,15 @@ export class FreeDragComponent implements OnInit{
     { id: 5, title: "card", tag: "card", xPosition: 0, yPosition:0}
   ];
 
-  constructor() {
+  constructor(private router: Router) {
    }
 
   ngOnInit(): void {
     this.getDataDragDrop();
+  }
+
+  getItemsData(){
+    return this.items; 
   }
 
   getDataDragDrop(){
@@ -42,37 +47,21 @@ export class FreeDragComponent implements OnInit{
     }
     else {
       this.dragPosition.x = this.itemObject.xPosition;
-      this.dragPosition.y = this.itemObject.yPosition; 
-      // this.dataArray.forEach(element => {
-      // this.dragPosition.x = element.xPosition;
-      // this.dragPosition.y = element.yPosition; 
-      // });
-         
+      this.dragPosition.y = this.itemObject.yPosition;
       return this.dataArray;
     }
   }
 
     dragStartedHandler(event:any,object:any,index:any){
       object.xPosition = event.source._dragRef._activeTransform.x;
-      object.yPosition = event.source._dragRef._activeTransform.y;
-      console.log('fire event',event);
-      console.log('value of object',object);
-      
+      object.yPosition = event.source._dragRef._activeTransform.y;      
     }
 
     dragEnded(event:any,object:any,index:any) {
-     // event.preventDefault();
-     //event.stopPropagation();
       const { offsetLeft, offsetTop } = event.source.element.nativeElement;
       const { x, y } = event.distance;      
       object.xPosition = offsetLeft + x;
       object.yPosition = offsetTop + y;
-      // this.itemObject.id = object.id;
-      // this.itemObject.title = object.title;
-      // this.itemObject.tag = object.tag;
-      // this.itemObject.xPosition = object.xPosition;
-      // this.itemObject.yPosition = object.yPosition;
-
       this.items.forEach(element => {
       this.itemObject.id = element.id;
       this.itemObject.title = element.title;
@@ -80,7 +69,6 @@ export class FreeDragComponent implements OnInit{
       this.itemObject.xPosition = element.xPosition;
       this.itemObject.yPosition = element.yPosition;
       });
-      console.log('lets see',object);
     }
 
     dragEnd($event: CdkDragEnd,object:any,index:any) {
@@ -94,14 +82,28 @@ export class FreeDragComponent implements OnInit{
         this.itemObject.xPosition = element.xPosition;
         this.itemObject.yPosition = element.yPosition;
         });
-
-        // if (object)
-        console.log('lets see',object);
-        console.log($event.source.getFreeDragPosition());
+        this.returnToDefaultPosition(object.xPosition,object.yPosition,index);
   }
 
     saveToLocalStorage(){
       const items = JSON.stringify(this.items)
       localStorage.setItem('itemArray', items);
+    }
+
+    returnToDefaultPosition(xPosition:any,yPosition:any,index:any) {
+      var overlap = !(xPosition < this.dragPosition.x || yPosition > this.dragPosition.y)
+      if (overlap){
+        this.items.forEach(element => {
+          this.itemObject.id = element.id;
+          this.itemObject.title = element.title;
+          this.itemObject.tag = element.tag;
+          this.itemObject.xPosition = 0;
+          this.itemObject.yPosition = 0;
+          });
+        alert('Can not place here');
+        window.location.reload();
+      } else {
+        alert('Please Move anywhere');
+      }       
     }
 }
