@@ -91,19 +91,16 @@ export class FreeDragComponent implements OnInit{
     }
 
     returnToDefaultPosition(xPosition:any,yPosition:any,index:any) {
-      var overlap = !(xPosition < this.dragPosition.x || yPosition > this.dragPosition.y)
+      var overlap = !(xPosition < this.dragPosition.x || yPosition > this.dragPosition.y);
+      var overlap1 = (xPosition > this.dragPosition.x || yPosition < this.dragPosition.y);
       if (overlap){
-        this.items.forEach(element => {
-          this.itemObject.id = element.id;
-          this.itemObject.title = element.title;
-          this.itemObject.tag = element.tag;
-          this.itemObject.xPosition = 0;
-          this.itemObject.yPosition = 0;
-          });
         alert('Can not place here');
         window.location.reload();
-      } else {
-        alert('Please Move anywhere');
-      }       
+      } else if (overlap1){
+        alert('can not move overlap1');
+        window.location.reload();
+      } else{
+        alert('No overlap');
+      }      
     }
 }
