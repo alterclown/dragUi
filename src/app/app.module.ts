@@ -9,6 +9,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { DragGroupComponent } from './drag-group/drag-group.component';
 import { FreeDragComponent } from './free-drag-component/free-drag.component';
 import { DragEventComponent } from './drag-event/drag-event.component';
+import { GridsterModule } from 'angular-gridster2';
+import { DragGridComponent } from './grid/drag-grid.component';
 
 @NgModule({
   declarations: [
@@ -16,13 +18,16 @@ import { DragEventComponent } from './drag-event/drag-event.component';
     DragComponent,
     DragGroupComponent,
     FreeDragComponent,
-    DragEventComponent
+    DragEventComponent,
+    DragGridComponent
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
-    DragDropModule
+    DragDropModule,
+    GridsterModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

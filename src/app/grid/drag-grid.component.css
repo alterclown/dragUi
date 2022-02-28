@@ -1,0 +1,22 @@
+p {
+	font-family: Lato;
+  }
+  
+  div#body{
+	height:100vh;
+	width:100vw;
+  }
+  
+  div#page{
+	width:21cm;
+	height:29.1cm;
+  
+	margin:10px auto;
+  }
+  
+  gridster {
+	/* width: 99vw;
+	height: 99vh; */
+	border-top: 1px solid black;
+  }
+  

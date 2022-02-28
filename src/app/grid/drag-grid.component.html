@@ -1,0 +1,29 @@
+<!-- <div id="body">
+	<div id="page">
+	  <gridster [options]="options">
+		  <gridster-item *ngFor="let object of items; let i = index">
+			<div  id = "{{i+1}}" class="card-body example-list">
+				<h5 class="card-title">{{object.title}}</h5>
+				<p class="card-text"> {{object.tag}} </p>
+				<a href="#" class="btn btn-primary">Go somewhere</a>
+			</div>
+		  </gridster-item>
+	  </gridster>
+	</div>
+  </div> -->
+
+
+  <div id="body">
+	<div id="page">
+	  <gridster [options]="options">
+		  <gridster-item [item]="i" *ngFor="let i of items">
+			<div  class="card-body example-list">
+				<h5 class="card-title">{{i.title}}</h5>
+				<p class="card-text"> {{i.tag}} </p>
+			
+			</div>
+		  </gridster-item>
+	  </gridster>
+  
+	</div>
+  </div>

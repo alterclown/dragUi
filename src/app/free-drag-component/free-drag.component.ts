@@ -92,7 +92,7 @@ export class FreeDragComponent implements OnInit{
 
     returnToDefaultPosition(xPosition:any,yPosition:any,index:any) {
       var overlap = !(xPosition < this.dragPosition.x || yPosition > this.dragPosition.y);
-      var overlap1 = (xPosition > this.dragPosition.x || yPosition < this.dragPosition.y);
+      var overlap1 = (xPosition < this.dragPosition.x || yPosition > this.dragPosition.y);
       if (overlap){
         alert('Can not place here');
         window.location.reload();
