@@ -12,11 +12,27 @@
 	</div>
   </div> -->
 
-
+  <button class="btn btn-primary btn-sm" (click)="saveTo()">Save</button>
   <div id="body">
 	<div id="page">
 	  <gridster [options]="options">
 		  <gridster-item [item]="i" *ngFor="let i of items">
+			<div  class="card-body example-list">
+				<h5 class="card-title">{{i.title}}</h5>
+				<p class="card-text"> {{i.tag}} </p>
+			
+			</div>
+		  </gridster-item>
+	  </gridster>
+  
+	</div>
+  </div>
+
+
+  <div id="body" class="m-2 p-2">
+	<div id="page">
+	  <gridster [options]="options">
+		  <gridster-item [item]="i" *ngFor="let i of dataArray">
 			<div  class="card-body example-list">
 				<h5 class="card-title">{{i.title}}</h5>
 				<p class="card-text"> {{i.tag}} </p>

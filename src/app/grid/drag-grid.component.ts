@@ -13,31 +13,11 @@ import { GridsterConfig, GridsterItem } from 'angular-gridster2';
 
 
 export class DragGridComponent implements OnInit{
- // public options: GridsterConfig;
-  itemObject: Item = new Item();
-
   public options: GridsterConfig;
-    // public items: GridsterItem[];
-    public items: any;
-
-
-  // items:Item[] = [
-   
-  //   { id: 1, title: "table", tag: "table", x: 0, y:0 },
-  //   { id: 2, title: "graph", tag: "graph", x: 0, y:0},
-  //   { id: 3, title: "barchart", tag: "barchart", x: 0, y:0},
-  //   { id: 4, title: "content", tag: "content", x: 0, y:0},
-  //   { id: 5, title: "card", tag: "card", x: 0, y:0}
-  // ];
+  public items: any;
+  dataArray:any[]=[]
 
   constructor() {
-    // this.items = [
-    //   {x: 0, y: 0, rows: 2, cols: 5},
-    //   {x: 0, y: 2, rows: 4, cols: 5},
-    //   {x: 4, y: 0, rows: 3, cols: 8},
-    //   ];
-
-
   this.items = [
    
     { id: 1, title: "table", tag: "table", x: 0, y:0 },
@@ -71,13 +51,28 @@ export class DragGridComponent implements OnInit{
       draggable: {
           enabled: true
       },
-      displayGrid:'always'
+      displayGrid:'none'
    };
 }
 
   ngOnInit(): void {
-    this.items;
+    this.getDataDragDrop();
   }
 
-  
+  saveTo(){
+    const items = JSON.stringify(this.items)
+    localStorage.setItem('itemArray', items);
+  }
+
+  getDataDragDrop(){
+    let array= JSON.parse(localStorage.getItem('itemArray') || '[]');
+    this.dataArray = array as any;
+    
+    if (this.dataArray === null){
+        return this.items;
+    }
+    else {
+      return this.dataArray;
+    }
+  }
 }
